@@ -6,11 +6,11 @@ namespace XFAspNetCoreDITemplate
 {
     public partial class App : Application
     {
-        public App()
+        public App(Page startupPage)
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = startupPage;
         }
 
         protected override void OnStart()

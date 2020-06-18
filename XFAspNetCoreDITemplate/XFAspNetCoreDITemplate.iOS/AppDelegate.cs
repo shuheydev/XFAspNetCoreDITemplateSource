@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using UIKit;
 
 namespace XFAspNetCoreDITemplate.iOS
@@ -23,9 +25,19 @@ namespace XFAspNetCoreDITemplate.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+
+            Startup.Init(ConfigureServices);
+
+            LoadApplication(Startup.Init(ConfigureServices));
 
             return base.FinishedLaunching(app, options);
+        }
+
+        private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
+        {
+            //Add services here(platform specific services)
+            //ex:
+            //services.AddSingleton<INotificationService, AndroidNotificationService>();
         }
     }
 }
